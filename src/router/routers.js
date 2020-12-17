@@ -1,4 +1,5 @@
 import Home from "../views/Home";
+import ParentsView from "../views/ParentsView";
 
 export default [
     {
@@ -8,15 +9,16 @@ export default [
             title:'人事管理',
             icon:'md-person',
         },
+        component:ParentsView,
         children:[
             {
-                path: '/interRmd',
-                name:'interRmd',
+                path: '/InterRmd',
+                name:'InterRmd',
                 meta:{
                     title: '内部推荐',
                     icon:'md-person-add'
                 },
-                showAlways:true,
+                component: ()=>import('../views/personmgr/InterRmd'),
             },
             {
                 path: '/LaborRel',
@@ -77,6 +79,7 @@ export default [
             title: '费用报销',
             icon: 'logo-usd'
         },
+        component:ParentsView,
         children: [
             {
                 path: '/MealRbm',
@@ -119,6 +122,7 @@ export default [
             title: '信息管理',
             icon: 'md-information'
         },
+        component:ParentsView,
         children: [
             {
                 path: '/notificationMgr',
@@ -145,6 +149,7 @@ export default [
             title: '证明盖章',
             icon: 'md-color-filter'
         },
+        component:ParentsView,
         children: [
             {
                 path: '/InternshipCer',
@@ -170,7 +175,8 @@ export default [
         meta: {
             title: '辅助管理',
             icon: 'logo-yahoo'
-        }
+        },
+        component:ParentsView,
     },
     {
         path: '/ProjectMgr',
@@ -178,7 +184,8 @@ export default [
         meta: {
             title: '项目管理',
             icon: 'md-infinite'
-        }
+        },
+        component:ParentsView,
     },
     {
         path: '/401',

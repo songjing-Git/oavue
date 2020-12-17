@@ -20,7 +20,7 @@
                     </div>
                     <Content class="content-wrapper">
                         <keep-alive :include="cacheList">
-                            <router-view/>
+                            <ParentsView/>
                         </keep-alive>
                     </Content>
                 </Layout>
@@ -36,9 +36,10 @@
     import TagsNav from "../components/main/tags-nav";
     import User from "../components/main/user";
     import FullScreen from "../components/main/full-screen";
+    import ParentsView from "./ParentsView";
     export default {
         name: "Home",
-        components: {FullScreen, User, TagsNav, HeaderBar,  SideMenu},
+        components: {ParentsView, FullScreen, User, TagsNav, HeaderBar,  SideMenu},
         props: {},
         data() {
             return {
