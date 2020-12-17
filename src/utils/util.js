@@ -1,10 +1,25 @@
+export const TOKEN_KEY = 'token'
+import Cookies from 'js-cookie'
+
+export const getToken = () => {
+    const token = Cookies.get(TOKEN_KEY)
+    if (token) return token
+    else return false
+}
+
+
 /**
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
  */
 export const getMenuByRouter = (list, access) => {
     let res = []
+
     forEach(list, item => {
+        console.log(list)
+        console.log(item)
+        console.log(!item.meta)
+        console.log(!item.meta.hideInMenu)
         if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
             let obj = {
                 icon: (item.meta && item.meta.icon) || '',

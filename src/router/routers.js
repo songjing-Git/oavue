@@ -1,7 +1,45 @@
-import Home from "../views/Home";
 import ParentsView from "../views/ParentsView";
+import Home from "../views/Home";
 
 export default [
+    {
+        path:'/',
+        redirect:'/login',
+        meta: {
+            hideInMenu: true
+        }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        meta: {
+            title: '登录',
+            hideInMenu: true,
+        },
+        component:()=>import('../views/Login')
+    },
+    {
+        path: '/home',
+        name:'home',
+        meta: {
+            hideInMenu: true,
+            notCache: true,
+            title: '首页',
+            icon: 'md-home'
+        },
+        component:()=>import('../views/Home'),
+        children: [
+            {
+              path: "/home",
+                redirect:"/main"
+            },
+            {
+                path:"/main",
+                name:"mainMenu",
+                component:()=>import('../views/ParentsView')
+            }
+        ]
+    },
     {
         path: '/personMgr',
         name:'personMgr',
@@ -9,7 +47,7 @@ export default [
             title:'人事管理',
             icon:'md-person',
         },
-        component:ParentsView,
+        component:Home,
         children:[
             {
                 path: '/InterRmd',

@@ -1,5 +1,16 @@
 <template>
+    <Row>
+        <Col>
+            <Tabs value="name1">
+                <TabPane label="内推职位">
 
+                </TabPane>
+                <TabPane label="内推政策">
+
+                </TabPane>
+            </Tabs>
+        </Col>
+    </Row>
 </template>
 
 <script>

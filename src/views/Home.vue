@@ -3,6 +3,7 @@
         <Sider hide-trigger collapsible :width="200" :collapsed-width="64" v-model="collapsed" class="left-side" :style="{overflow: 'hidden'}">
             <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
                 <div class="logo-con">
+                    <Avatar icon="ios-person" size="large" />
                 </div>
             </side-menu>
         </Sider>
@@ -20,7 +21,7 @@
                     </div>
                     <Content class="content-wrapper">
                         <keep-alive :include="cacheList">
-                            <ParentsView/>
+                            <router-view/>
                         </keep-alive>
                     </Content>
                 </Layout>

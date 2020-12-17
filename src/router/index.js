@@ -1,36 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import routers from "./routers";
+import iView from 'view-design'
+import {getToken} from "../utils/util";
 
 Vue.use(Router)
 
-export default new Router({
+export const router = new Router({
     mode:'history',
-    routes:[
-        {
-            path:'/',
-            redirect:'/login'
-        },
-        {
-            path: '/login',
-            name: 'login',
-            meta: {
-                title: '登录',
-                hideInMenu: true,
-            },
-            component:()=>import('../views/Login')
-        },
-        {
-            path: '/home',
-            name:'home',
-            meta: {
-                hideInMenu: true,
-                notCache: true,
-                title: '首页',
-                icon: 'md-home'
-            },
-            component:()=>import('../views/Home'),
-            children:routers
-        },
-    ]
+    routes:routers
+})
+
+router.beforeEach((to, from, next) => {
+    next()
 })
