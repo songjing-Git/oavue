@@ -35,7 +35,10 @@ export default [
             },
             {
                 path:"/main",
-                name:"mainMenu",
+                name:"main",
+                meta: {
+                    title: '首页',
+                },
                 component:()=>import('../views/ParentsView')
             }
         ]
@@ -117,7 +120,7 @@ export default [
             title: '费用报销',
             icon: 'logo-usd'
         },
-        component:ParentsView,
+        component:Home,
         children: [
             {
                 path: '/MealRbm',
@@ -160,7 +163,7 @@ export default [
             title: '信息管理',
             icon: 'md-information'
         },
-        component:ParentsView,
+        component:Home,
         children: [
             {
                 path: '/notificationMgr',
@@ -187,7 +190,7 @@ export default [
             title: '证明盖章',
             icon: 'md-color-filter'
         },
-        component:ParentsView,
+        component:Home,
         children: [
             {
                 path: '/InternshipCer',
@@ -214,7 +217,7 @@ export default [
             title: '辅助管理',
             icon: 'logo-yahoo'
         },
-        component:ParentsView,
+        component:Home,
     },
     {
         path: '/ProjectMgr',
@@ -223,7 +226,7 @@ export default [
             title: '项目管理',
             icon: 'md-infinite'
         },
-        component:ParentsView,
+        component:Home,
     },
     {
         path: '/401',

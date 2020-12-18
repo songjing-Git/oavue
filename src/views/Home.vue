@@ -3,7 +3,7 @@
         <Sider hide-trigger collapsible :width="200" :collapsed-width="64" v-model="collapsed" class="left-side" :style="{overflow: 'hidden'}">
             <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
                 <div class="logo-con">
-                    <Avatar icon="ios-person" size="large" />
+                    <Avatar :src="userAvator"  size="50" />
                 </div>
             </side-menu>
         </Sider>
@@ -38,6 +38,7 @@
     import User from "../components/main/user";
     import FullScreen from "../components/main/full-screen";
     import ParentsView from "./ParentsView";
+    import { mapMutations, mapActions, mapGetters } from 'vuex'
     export default {
         name: "Home",
         components: {ParentsView, FullScreen, User, TagsNav, HeaderBar,  SideMenu},
@@ -56,6 +57,7 @@
                 return this.$store.state.user.avatorImgPath
             },
             tagNavList () {
+                console.log("tagNavList:"+this.$store.state.app.tagNavList)
                 return this.$store.state.app.tagNavList
             },
             cacheList () {
@@ -63,6 +65,13 @@
             },
         },
         methods: {
+            ...mapMutations([
+                'setTagNavList',
+                'addTag',
+               'setBreadCrumb'
+               /* 'setBreadCrumb',
+                'setLocal'*/
+            ]),
             turnToPage (route) {
                 let { name, params, query } = {}
                 if (typeof route === 'string') name = route
@@ -89,7 +98,7 @@
             },
             handleCloseTag (res, type, route) {
                 if (type === 'all') {
-                    this.turnToPage(this.$config.homeName)
+                    this.turnToPage("main")
                 } else if (routeEqual(this.$route, route)) {
                     if (type !== 'others') {
                         const nextRoute = getNextRoute(this.tagNavList, route)
@@ -99,7 +108,34 @@
                 this.setTagNavList(res)
             },
         },
-        watch: {}
+        watch: {
+            '$route' (newRoute) {
+                const { name, query, params, meta } = newRoute
+                this.addTag({
+                    route: { name, query, params, meta },
+                    type: 'push'
+                })
+                this.setBreadCrumb(newRoute)
+                this.setTagNavList(getNewTagList(this.tagNavList, newRoute))
+                this.$refs.sideMenu.updateOpenName(newRoute.name)
+            }
+        },
+        mounted () {
+            /**
+             * @description 初始化设置面包屑导航和标签导航
+             */
+            this.setTagNavList()
+            this.addTag({
+                route: this.$store.state.app.homeRoute
+            })
+            this.setBreadCrumb(this.$route)
+            // 如果当前打开页面不在标签栏中，跳到homeName页
+            if (!this.tagNavList.find(item => item.name === this.$route.name)) {
+                this.$router.push({
+                    name: "main"
+                })
+            }
+        }
     }
 </script>
 
@@ -174,5 +210,4 @@
     .ivu-select-dropdown.ivu-dropdown-transfer {
         max-height: 400px;
     }
-    /*# sourceMappingURL=main.css.map */
 </style>
