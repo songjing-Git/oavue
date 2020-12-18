@@ -1,6 +1,8 @@
 # oavue
 
 > A Vue.js project
+>OA系统 毕业设计 参考iview-admin模板
+>vue全家桶 +view design UI库
 
 ## Build Setup
 
