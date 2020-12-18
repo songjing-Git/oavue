@@ -3,6 +3,7 @@ import {getMenuByRouter,getTagNavListFromLocalstorage,setTagNavListInLocalstorag
 
 export default {
     state: {
+        breadCrumbList: [],
         tagNavList: [],
         homeRoute: getHomeRoute(routers, "main"),
     },
