@@ -24,8 +24,6 @@ export default [
         meta: {
             hideInMenu: true,
             notCache: true,
-            title: '首页',
-            icon: 'md-home'
         },
         component:()=>import('../views/Home'),
         children: [
@@ -38,8 +36,9 @@ export default [
                 name:"main",
                 meta: {
                     title: '首页',
+                    icon: "md-home"
                 },
-                component:()=>import('../views/ParentsView')
+                component:()=>import('../views/personmgr/InterMob')
             }
         ]
     },
@@ -59,7 +58,26 @@ export default [
                     title: '内部推荐',
                     icon:'md-person-add'
                 },
-                component: ()=>import('../views/personmgr/InterRmd'),
+                component:()=>import('../views/ParentsView'),
+                children: [
+                    {
+                        path: '/InterPush',
+                        name:'InterPush',
+                        meta: {
+                            title: '内推职位',
+                            icon: ''
+                        },
+                        component:()=>import('../views/personmgr/InterPush')
+                    },
+                    {
+                        path: '/',
+                        name: '',
+                        meta: {
+                            title: '内推政策',
+                            icon: ''
+                        }
+                    }
+                ]
             },
             {
                 path: '/LaborRel',
@@ -68,6 +86,7 @@ export default [
                     title: '劳动关系',
                     icon: 'md-contacts'
                 },
+                component:()=>import('../views/ParentsView'),
                 children:[
                     {
                         path:'/InterMob',
@@ -75,7 +94,8 @@ export default [
                         meta:{
                             title:'内部调动',
                             icon:'md-walk'
-                        }
+                        },
+                        component:()=>import('../views/personmgr/InterMob')
                     },
                     {
                         path: '/ContractRen',

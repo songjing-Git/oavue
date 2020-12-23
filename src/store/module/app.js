@@ -1,5 +1,7 @@
 import routers from "../../router/routers";
-import {getMenuByRouter,getTagNavListFromLocalstorage,setTagNavListInLocalstorage,getRouteTitleHandled,routeHasExist,getHomeRoute,getBreadCrumbList} from "../../utils/util";
+import {getMenuByRouter,getTagNavListFromLocalstorage,
+    setTagNavListInLocalstorage,getRouteTitleHandled,
+    routeHasExist,getHomeRoute,getBreadCrumbList} from "../../utils/util";
 
 export default {
     state: {

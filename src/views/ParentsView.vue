@@ -1,19 +1,6 @@
 <template>
     <div>
-        <Row :gutter="20">
-            <Col :xl="{span:16}">
-                <Carousel v-model="value1" :height="300" loop>
-                    <CarouselItem v-for="(item,index) in carouselList" :key="`carousel-${index}`">
-                        <div class="demo-carousel"></div>
-                    </CarouselItem>
-                </Carousel>
-            </Col>
-            <Col :xl="{span:8}">
-                <div>
-
-                </div>
-            </Col>
-        </Row>
+        <router-view/>
     </div>
 </template>
 

@@ -145,7 +145,7 @@
     }
     .side-menu-wrapper a.drop-menu-a {
         display: inline-block;
-        padding: 6px 15px;
+        padding: 8px 17px;
         width: 100%;
         text-align: center;
         color: #495060;
