@@ -38,7 +38,7 @@ export default [
                     title: '首页',
                     icon: "md-home"
                 },
-                component:()=>import('../views/personmgr/InterMob')
+                component:()=>import('../views/MainView')
             }
         ]
     },

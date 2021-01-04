@@ -1,24 +1,38 @@
 <template>
-    <div class="job-search">
-        <Row class="job-text-title">
-            <Col :xl="{span:2}">
-                <span>
-                    职位搜索:
-                </span>
-            </Col>
-        </Row>
-        <Row class="job-text-body">
-            <Col :xl="{span:5}">
-                <Form :label-width="100" label-colon>
-                    <FormItem   label="工作城市"  >
-                        <Select v-model="city"  >
-                            <Option v-for="city in cityList" :value="city.cityName" :key="city.cityCode">{{city.cityName}}</Option>
-                        </Select>
-                    </FormItem >
+    <div>
+        <Card>
+            <div class="search-con search-con-top">
+                <Form inline :label-width="80">
+                    <template v-for="item in columns">
+                        <FormItem  :label="`${ item.title}`">
+                            <Select v-model="searchKey" class="search-col">
+                                <Option v-for="item in columns" v-if="item.key !== 'handle'" :value="item.key" :key="`search-col-${item.key}`">{{ item.title }}</Option>
+                            </Select>
+                        </FormItem>
+                    </template>
+                    <Button class="search-btn" type="primary"><Icon type="search"/>&nbsp;&nbsp;搜索</Button>
                 </Form>
-            </Col>
-        </Row>
-
+            </div>
+            <Table
+                ref="tablesMain"
+                :data="insideTableData"
+                :columns="columns"
+                :stripe="true"
+                :border="false"
+                :show-header="true"
+                :disabled-hover="false"
+                :highlight-row="true"
+                no-data-text="数据为空时显示的提示内容"
+                no-filtered-data-text="筛选数据为空时显示的提示内容"
+            >
+                <slot name="header" slot="header">
+                </slot>
+                <slot name="footer" slot="footer">
+                    <Page :total="pageTitle"  show-total show-elevator show-sizer  />
+                </slot>
+                <slot name="loading" slot="loading"></slot>
+            </Table>
+        </Card>
     </div>
 </template>
 
@@ -29,33 +43,17 @@
         props: {},
         data () {
             return {
-                city:"",
-                cityList:[
-                    {
-                        cityCode: 'New York',
-                        cityName: 'New York'
-                    },
-                    {
-                        cityCode: 'London',
-                        cityName: 'London'
-                    },
-                    {
-                        cityCode: 'Sydney',
-                        cityName: 'Sydney'
-                    },
-                    {
-                        cityCode: 'Ottawa',
-                        cityName: 'Ottawa'
-                    },
-                    {
-                        cityCode: 'Paris',
-                        cityName: 'Paris'
-                    },
-                    {
-                        cityCode: 'Canberra',
-                        cityName: 'Canberra'
-                    }
-                ]
+                pageTitle:0,
+                columns: [
+                    { title: '职位名称', key: 'name', sortable: true },
+                    { title: '工作地点', key: 'city', editable: true },
+                    { title: '职位要求', key: 'createTime' },
+                    { title: '我要推荐', key: 'push' },
+
+                ],
+                insideTableData: [],
+                searchKey:"",
+                searchValue: '',
             }
         },
         computed: {
@@ -68,15 +66,19 @@
 </script>
 
 <style scoped>
-    .job-search{
-        background-color:#eeeeee;
-
-
+    .search-con {
+        padding: 10px 0;
     }
-    .job-text-title{
-        font-size: 25px;
+    .search-con .search-col {
+        display: inline-block;
+        width: 200px;
     }
-    .job-text-body{
-        padding-top: 10px;
+    .search-con .search-input {
+        display: inline-block;
+        width: 200px;
+        margin-left: 2px;
+    }
+    .search-con .search-btn {
+        margin-left: 2px;
     }
 </style>
