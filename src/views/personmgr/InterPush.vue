@@ -43,7 +43,7 @@
         props: {},
         data () {
             return {
-                pageTitle:0,
+                pageTitle:40,
                 columns: [
                     { title: '职位名称', key: 'name', sortable: true },
                     { title: '工作地点', key: 'city', editable: true },

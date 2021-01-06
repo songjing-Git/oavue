@@ -6,7 +6,8 @@ import axios from 'axios'
 import {Modal} from 'view-design'
 axios.defaults.timeout=10000
 axios.defaults.baseURL="http://localhost:8084/"
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+/*axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'*/
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 /**
  * 请求拦截
  */
@@ -66,9 +67,7 @@ export function Get(url, params){
  */
 export function Post(url ,data) {
     return new Promise((resolve, reject) =>{
-        axios.post(url, {
-            data: data
-        }).then(res =>{
+        axios.post(url, data).then(res =>{
             resolve(res.data);
         }).catch(err =>{
             reject(err.data)

@@ -42,20 +42,30 @@
 </template>
 
 <script>
+    import api from "../api/api";
+
     export default {
         name: "Login",
         props: {},
         data() {
             return {
-                username:'admin',
-                password:'root',
-                single:false
+                username:'songjing3',
+                password:'songjing3!',
+                single:false,
+                result:""
             }
         },
         computed: {},
         methods: {
             onSubmit(){
+                /*console.log(api.login(this.username, this.password));
+                api.login(this.username,this.password).then(res=>{
+                    if (res){
+                        this.$router.push("/home")
+                    }
+                })*/
                 this.$router.push("/home")
+
             }
         },
         watch: {}

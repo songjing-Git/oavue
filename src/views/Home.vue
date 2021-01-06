@@ -27,7 +27,7 @@
                 </Layout>
             </Content>
             <Footer>
-                <Divider orientation="center" dashed="true">
+                <Divider orientation="center" :dashed="true">
                     <p></p>
                     <p>songjing@湖南城市学院-信息与计算科学</p>
                 </Divider>

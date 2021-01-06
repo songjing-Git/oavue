@@ -1,5 +1,12 @@
-import {Get} from "./index";
+import {Get,Post} from "../api/index"
+export default {
+     login (username,password) {
+        return  Post(
+             "user/login",
+         {username,password}
+         )
 
-export const login=(username,password)=>{
-  return  Get('login',{username,password})
+    }
 }
+
+
