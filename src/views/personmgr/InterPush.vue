@@ -28,7 +28,12 @@
                 <slot name="header" slot="header">
                 </slot>
                 <slot name="footer" slot="footer">
-                    <Page :total="pageTitle"  show-total show-elevator show-sizer  />
+                    <Page :total="pageTitle"
+                          show-total
+                          show-elevator
+                          show-sizer
+                          :placement="'top'"
+                          :page-size-opts="[10,20,50,100]"  />
                 </slot>
                 <slot name="loading" slot="loading"></slot>
             </Table>

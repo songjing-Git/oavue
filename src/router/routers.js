@@ -103,7 +103,7 @@ export default [
                         meta:{
                             title: '合同续签',
                             icon: 'md-clipboard'
-                        }
+                        },
                     },
                     {
                         path: '/LeaveDeal',
@@ -112,6 +112,7 @@ export default [
                             title: '离职办理',
                             icon: 'ios-walk'
                         },
+                        component:()=>import('../views/personmgr/LeaveDeal')
                     },
                 ]
             },

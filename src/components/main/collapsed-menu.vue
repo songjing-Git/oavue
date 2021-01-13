@@ -64,6 +64,31 @@
 </script>
 
 <style scoped>
+    .collased-menu-dropdown {
+        width: 100%;
+        margin: 0;
+        line-height: normal;
+        padding: 7px 0 6px 16px;
+        clear: both;
+        font-size: 12px !important;
+        white-space: nowrap;
+        list-style: none;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out;
+    }
+    .collased-menu-dropdown:hover {
+        background: rgba(100, 100, 100, 0.1);
+    }
+    .collased-menu-dropdown * {
+        color: #515a6e;
+    }
+    .collased-menu-dropdown .ivu-menu-item > i {
+        margin-right: 12px !important;
+    }
+    .collased-menu-dropdown .ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i {
+        margin-right: 8px !important;
+    }
+
      .ivu-dropdown-rel a {
         width: 100%;
     }

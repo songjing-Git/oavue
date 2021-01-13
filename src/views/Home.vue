@@ -20,6 +20,7 @@
                         <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
                     </div>
                     <Content class="content-wrapper">
+                        <Alert type="error" closable>An error prompt</Alert>
                         <keep-alive :include="cacheList">
                             <router-view/>
                         </keep-alive>
@@ -27,11 +28,11 @@
                 </Layout>
             </Content>
             <Footer>
-                <Divider orientation="center" :dashed="true">
-                    <p></p>
+               <!-- <Divider orientation="center" :dashed="true">
+                    <br>
                     <p>songjing@湖南城市学院-信息与计算科学</p>
-                </Divider>
-
+                    <a href="http://beian.miit.gov.cn">湘ICP备2021000328号</a>
+                </Divider>-->
             </Footer>
         </Layout>
     </Layout>

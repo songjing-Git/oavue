@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="Main">
         <router-view/>
     </div>
 </template>
@@ -23,5 +23,7 @@
 </script>
 
 <style scoped>
-
+.Main{
+    background: #FFFFFF;
+}
 </style>

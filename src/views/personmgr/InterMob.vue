@@ -12,12 +12,12 @@
                </Card>
             </Col>
         </Row>
-        <Row>
+        <Row >
             <Col>
                 <Card>
                     <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="100">
                         <Row>
-                            <Col :xl="{offset:6,span:6}">
+                            <Col :xl="{offset:8,span:6}">
                                 <FormItem label="变更类型:" prop="ChangeType">
                                     <RadioGroup v-model="formValidate.ChangeType">
                                         <Radio label="DeptType">部门变更</Radio>
@@ -35,77 +35,94 @@
                         </Row>
                         <Row>
                             <Col :xl="{offset:3,span:6}">
-                                <FormItem label="City" prop="city">
-                                    <Select v-model="formValidate.city" placeholder="Select your city">
-                                        <Option value="beijing">New York</Option>
-                                        <Option value="shanghai">London</Option>
-                                        <Option value="shenzhen">Sydney</Option>
-                                    </Select>
+                                <FormItem label="转出部门:" prop="OutDept">
+                                    <Input v-model="formValidate.StaffName"  disabled></Input>
                                 </FormItem>
-                                <FormItem label="Date">
-                                    <Row>
-                                        <Col span="11">
-                                            <FormItem prop="date">
-                                                <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>
-                                            </FormItem>
-                                        </Col>
-                                        <Col span="2" style="text-align: center">-</Col>
-                                        <Col span="11">
-                                            <FormItem prop="time">
-                                                <TimePicker type="time" placeholder="Select time" v-model="formValidate.time"></TimePicker>
-                                            </FormItem>
-                                        </Col>
-                                    </Row>
+                                <FormItem label="转出岗位:" prop="OutJob">
+                                    <Input v-model="formValidate.StaffName"  disabled></Input>
                                 </FormItem>
+                                <FormItem label="部门负责人:" prop="OutDeptMgr">
+                                    <Input v-model="formValidate.StaffName"  disabled></Input>
+                                </FormItem>
+<!--                                <FormItem label="Date">-->
+<!--                                    <Row>-->
+<!--                                        <Col span="11">-->
+<!--                                            <FormItem prop="date">-->
+<!--                                                <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>-->
+<!--                                            </FormItem>-->
+<!--                                        </Col>-->
+<!--                                        <Col span="2" style="text-align: center">-</Col>-->
+<!--                                        <Col span="11">-->
+<!--                                            <FormItem prop="time">-->
+<!--                                                <TimePicker type="time" placeholder="Select time" v-model="formValidate.time"></TimePicker>-->
+<!--                                            </FormItem>-->
+<!--                                        </Col>-->
+<!--                                    </Row>-->
+<!--                                </FormItem>-->
 
-                                <FormItem label="Hobby" prop="interest">
-                                    <CheckboxGroup v-model="formValidate.interest">
-                                        <Checkbox label="Eat"></Checkbox>
-                                        <Checkbox label="Sleep"></Checkbox>
-                                        <Checkbox label="Run"></Checkbox>
-                                        <Checkbox label="Movie"></Checkbox>
-                                    </CheckboxGroup>
-                                </FormItem>
+<!--                                <FormItem label="Hobby" prop="interest">-->
+<!--                                    <CheckboxGroup v-model="formValidate.interest">-->
+<!--                                        <Checkbox label="Eat"></Checkbox>-->
+<!--                                        <Checkbox label="Sleep"></Checkbox>-->
+<!--                                        <Checkbox label="Run"></Checkbox>-->
+<!--                                        <Checkbox label="Movie"></Checkbox>-->
+<!--                                    </CheckboxGroup>-->
+<!--                                </FormItem>-->
                                 <FormItem label="Desc" prop="desc">
                                     <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
                                 </FormItem>
                             </Col>
                             <Col :xl="{offset:3,span:6}">
-                                <FormItem label="City" prop="city">
-                                    <Select v-model="formValidate.city" placeholder="Select your city">
+                                <FormItem label="转入部门" prop="ToDept">
+                                    <Select v-model="formValidate.city" placeholder="请输入您申请转入的部门">
                                         <Option value="beijing">New York</Option>
                                         <Option value="shanghai">London</Option>
                                         <Option value="shenzhen">Sydney</Option>
                                     </Select>
                                 </FormItem>
-                                <FormItem label="Date">
-                                    <Row>
-                                        <Col span="11">
-                                            <FormItem prop="date">
-                                                <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>
-                                            </FormItem>
-                                        </Col>
-                                        <Col span="2" style="text-align: center">-</Col>
-                                        <Col span="11">
-                                            <FormItem prop="time">
-                                                <TimePicker type="time" placeholder="Select time" v-model="formValidate.time"></TimePicker>
-                                            </FormItem>
-                                        </Col>
-                                    </Row>
+                                <FormItem label="转入岗位" prop="ToJob">
+                                    <Select v-model="formValidate.city" placeholder="请输入您申请转入的岗位">
+                                        <Option value="beijing">New York</Option>
+                                        <Option value="shanghai">London</Option>
+                                        <Option value="shenzhen">Sydney</Option>
+                                    </Select>
                                 </FormItem>
+                                <FormItem label="部门负责人:" prop="ToDeptMgr">
+                                    <Input v-model="formValidate.StaffName" placeholder="Enter your DeptMgr"></Input>
+                                </FormItem>
+                                <FormItem label="薪水:" prop="salary">
+                                    <Input v-model="formValidate.StaffName" placeholder="Enter your salary"></Input>
+                                </FormItem>
+                                <FormItem label="职级:" prop="salary">
+                                    <Input v-model="formValidate.StaffName" placeholder="Enter your salary"></Input>
+                                </FormItem>
+<!--                                <FormItem label="Date">-->
+<!--                                    <Row>-->
+<!--                                        <Col span="11">-->
+<!--                                            <FormItem prop="date">-->
+<!--                                                <DatePicker type="date" placeholder="Select date" v-model="formValidate.date"></DatePicker>-->
+<!--                                            </FormItem>-->
+<!--                                        </Col>-->
+<!--                                        <Col span="2" style="text-align: center">-</Col>-->
+<!--                                        <Col span="11">-->
+<!--                                            <FormItem prop="time">-->
+<!--                                                <TimePicker type="time" placeholder="Select time" v-model="formValidate.time"></TimePicker>-->
+<!--                                            </FormItem>-->
+<!--                                        </Col>-->
+<!--                                    </Row>-->
+<!--                                </FormItem>-->
 
-                                <FormItem label="Hobby" prop="interest">
-                                    <CheckboxGroup v-model="formValidate.interest">
-                                        <Checkbox label="Eat"></Checkbox>
-                                        <Checkbox label="Sleep"></Checkbox>
-                                        <Checkbox label="Run"></Checkbox>
-                                        <Checkbox label="Movie"></Checkbox>
-                                    </CheckboxGroup>
-                                </FormItem>
+<!--                                <FormItem label="Hobby" prop="interest">-->
+<!--                                    <CheckboxGroup v-model="formValidate.interest">-->
+<!--                                        <Checkbox label="Eat"></Checkbox>-->
+<!--                                        <Checkbox label="Sleep"></Checkbox>-->
+<!--                                        <Checkbox label="Run"></Checkbox>-->
+<!--                                        <Checkbox label="Movie"></Checkbox>-->
+<!--                                    </CheckboxGroup>-->
+<!--                                </FormItem>-->
                                 <FormItem label="Desc" prop="desc">
                                     <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
                                 </FormItem>
-
                             </Col>
                         </Row>
 
@@ -149,26 +166,26 @@
                         { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
                         { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
                     ],
-                    city: [
-                        { required: true, message: 'Please select the city', trigger: 'change' }
-                    ],
-                    ChangeType: [
-                        { required: true, message: 'Please select gender', trigger: 'change' }
-                    ],
-                    interest: [
-                        { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-                        { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-                    ],
-                    date: [
-                        { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-                    ],
-                    time: [
-                        { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
-                    ],
-                    desc: [
-                        { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-                        { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
-                    ]
+                    // city: [
+                    //     { required: true, message: 'Please select the city', trigger: 'change' }
+                    // ],
+                    // ChangeType: [
+                    //     { required: true, message: 'Please select gender', trigger: 'change' }
+                    // ],
+                    // interest: [
+                    //     { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
+                    //     { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
+                    // ],
+                    // date: [
+                    //     { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
+                    // ],
+                    // time: [
+                    //     { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
+                    // ],
+                    // desc: [
+                    //     { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
+                    //     { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
+                    // ]
                 }
             }
         },
