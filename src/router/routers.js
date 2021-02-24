@@ -1,4 +1,3 @@
-import ParentsView from "../views/ParentsView";
 import Home from "../views/Home";
 
 export default [
@@ -43,6 +42,67 @@ export default [
         ]
     },
     {
+      path: 'staffInfoMgr',
+      name: 'staffInfoMgr',
+      meta: {
+          title:'员工管理',
+          icon: 'md-person'
+      },
+        component:Home,
+        children: [
+            {
+                path: '/queryStaffInfo',
+                name: 'queryStaffInfo',
+                meta: {
+                    title: '员工管理',
+                    notCache:false,
+                    icon: 'md-person'
+                },
+                component:()=>import('../views/staffmgr/StaffInfo')
+            },
+           /* {
+                path: '/addStaffInfo',
+                name: 'addStaffInfo',
+                meta: {
+                    title: '员工注册',
+                    icon: 'md-person'
+                },
+                component:()=>import('../views/staffmgr/AddStaff')
+            },
+            {
+                path: '/removeStaffInfo',
+                name: 'removeStaffInfo',
+                meta: {
+                    title: '员工信息修改',
+                    icon: 'md-person'
+                },
+            },*/
+        ]
+
+    },
+    {
+        path: 'DepartMgr',
+        name: 'DepartMgr',
+        meta: {
+            title:'部门管理',
+            icon: 'md-person'
+        },
+        component:Home,
+        children: [
+            {
+                path: '/departMgr',
+                name: 'departMgr',
+                meta: {
+                    title: '部门管理',
+                    icon: 'md-person'
+                },
+                component:()=>import('../views/depart/DepartMgr')
+            },
+
+        ]
+
+    },
+    {
         path: '/personMgr',
         name:'personMgr',
         meta:{
@@ -51,6 +111,7 @@ export default [
         },
         component:Home,
         children:[
+
             {
                 path: '/InterRmd',
                 name:'InterRmd',
@@ -65,18 +126,24 @@ export default [
                         name:'InterPush',
                         meta: {
                             title: '内推职位',
+                            notCache:false,
                             icon: ''
                         },
+                        beforeEnter: (to,from,next)=>{
+                            //独享路由守卫
+                            next()
+                        },
+
                         component:()=>import('../views/personmgr/InterPush')
                     },
-                    {
+                    /*{
                         path: '/',
                         name: '',
                         meta: {
                             title: '内推政策',
                             icon: ''
                         }
-                    }
+                    }*/
                 ]
             },
             {
@@ -97,6 +164,7 @@ export default [
                         },
                         component:()=>import('../views/personmgr/InterMob')
                     },
+
                     {
                         path: '/ContractRen',
                         name:'ContractRen',
@@ -138,7 +206,7 @@ export default [
         path: '/ExpenseRbm',
         name: 'ExpenseRbm',
         meta: {
-            title: '费用报销',
+            title: '账务管理',
             icon: 'logo-usd'
         },
         component:Home,
@@ -149,15 +217,17 @@ export default [
                 meta: {
                     title: '餐费报销',
                     icon: 'logo-yen'
-                }
+                },
+                component:()=>import('../views/financemgr/MealExpenses')
             },
-            {
+            /*{
                 path: '/TransRbm',
                 name: 'TransRbm',
                 meta: {
                     title: '车费报销',
                     icon: 'md-car'
-                }
+                },
+                component:()=>import('../views/financemgr/TaxiFare')
             },
             {
                 path: '/OfficeRbm',
@@ -174,7 +244,7 @@ export default [
                     title: '其他报销',
                     icon: 'md-cart'
                 }
-            }
+            }*/
         ]
     },
     {
@@ -248,14 +318,44 @@ export default [
             icon: 'md-infinite'
         },
         component:Home,
+        children: [
+            {
+                path: '/ProjectInfo',
+                name: 'ProjectInfo',
+                meta: {
+                    title: '项目查询',
+                    icon: 'md-infinite'
+                },
+                component:()=>import('../views/projectmgr/ProjectInfo')
+            },
+            {
+                path: '/ProjectApp',
+                name: 'ProjectApp',
+                meta: {
+                    title: '立项申请',
+                    icon: 'md-infinite'
+                },
+                component:()=>import('../views/projectmgr/ProjectApp')
+            },
+            {
+                path: '/ContractMgr',
+                name: 'ContractMgr',
+                meta: {
+                    title: '合同管理',
+                    icon: 'md-infinite'
+                },
+            },
+            {
+                path: '/TaskAllocation',
+                name: 'TaskAllocation',
+                meta: {
+                    title: '项目任务',
+                    icon: 'md-infinite'
+                },
+            },
+        ]
     },
-    {
-        path: '/401',
-        name: 'error_401',
-        meta: {
-            hideInMenu: true
-        },
-    },
+
     {
         path: '/500',
         name: 'error_500',
@@ -269,5 +369,6 @@ export default [
         meta: {
             hideInMenu: true
         },
+
     }
 ]

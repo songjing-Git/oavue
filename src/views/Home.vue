@@ -1,9 +1,9 @@
 <template>
     <Layout style="height: 100%" class="main">
-        <Sider hide-trigger collapsible :width="200" :collapsed-width="64" v-model="collapsed" class="left-side" :style="{overflow: 'hidden'}">
+        <Sider hide-trigger collapsible :width="200" :collapsed-width="0" v-model="collapsed" class="left-side" :style="{overflow: 'hidden'}">
             <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
                 <div class="logo-con">
-                    <Avatar :src="userAvator"  size="50" />
+                    <Avatar style="background-color: #87d068" :src="userAvator" icon="ios-person"  size="50" />
                 </div>
             </side-menu>
         </Sider>
@@ -19,10 +19,10 @@
                     <div class="tag-nav-wrapper">
                         <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
                     </div>
+                    <Alert type="error" closable>An error prompt</Alert>
                     <Content class="content-wrapper">
-                        <Alert type="error" closable>An error prompt</Alert>
                         <keep-alive :include="cacheList">
-                            <router-view/>
+                            <router-view class="routerView"/>
                         </keep-alive>
                     </Content>
                 </Layout>
@@ -62,15 +62,15 @@
                 return this.$store.getters.menuList
             },
             userAvator () {
-                return this.$store.state.user.avatorImgPath
+                    return this.$store.state.user.HEAD_PHOTO
             },
             tagNavList () {
-                console.log("tagNavList:"+this.$store.state.app.tagNavList)
                 return this.$store.state.app.tagNavList
             },
             cacheList () {
                 return this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []
             },
+
         },
         methods: {
             ...mapMutations([
@@ -217,5 +217,8 @@
     }
     .ivu-select-dropdown.ivu-dropdown-transfer {
         max-height: 400px;
+    }
+    .routerView{
+        background: #FFFFFF;
     }
 </style>

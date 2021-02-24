@@ -1,14 +1,10 @@
 <template>
-    <Row>
-        <Col>
 
-        </Col>
-    </Row>
 </template>
 
 <script>
     export default {
-        name: "job-search",
+        name: "DepartMgr",
         props: {},
         data() {
             return {}

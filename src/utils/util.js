@@ -1,13 +1,6 @@
 export const TOKEN_KEY = 'token'
 import Cookies from 'js-cookie'
 
-export const getToken = () => {
-    const token = Cookies.get(TOKEN_KEY)
-    if (token) return token
-    else return false
-}
-
-
 /**
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
@@ -235,4 +228,15 @@ export const getBreadCrumbList = (route, homeRoute) => {
         return !item.meta.hideInMenu
     })
     return [{...homeItem, to: homeRoute.path}, ...res]
+}
+
+
+export const setToken = (token) => {
+    Cookies.set(TOKEN_KEY, token, {expires:  1})
+}
+
+export const getToken = () => {
+    const token = Cookies.get(TOKEN_KEY)
+    if (token) return token
+    else return false
 }

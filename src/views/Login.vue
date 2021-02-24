@@ -1,48 +1,61 @@
 <template>
-    <div class="login" >
-        <div class="title">
-            <Row type="flex" justify="center">
-                <Col>
-                    <h1>OA办公自动化管理系统</h1>
+    <div class="login">
+        <Card class="form">
+            <Form  label-position="left" :label-width="60">
+            <Row>
+                <Col :xl="{offset:3,span:20}">
+                    <FormItem>
+                        <h1>OA管理系统</h1>
+                    </FormItem>
+
                 </Col>
             </Row>
-        </div>
-        <Row type="flex" justify="center">
-            <Col :xl="4">
-                <Form  label-position="left" :label-width="60">
+            <Row >
+                <Col :xl="{offset:2,span:20}">
                     <FormItem label="用户名:">
                         <Input v-model="username" clearable></Input>
                     </FormItem>
                     <FormItem label="密码:">
                         <Input type="password" v-model="password" password></Input>
                     </FormItem>
-                </Form>
-            </Col>
-        </Row>
-        <Row type="flex" justify="center">
-            <Col :xl="{span:2,offset:4}">
-                <Checkbox v-model="single">记住密码</Checkbox>
-            </Col>
-        </Row>
-        <div class="button">
-            <Row type="flex" justify="center">
-                <Col >
-                    <Button type="success" long @click="onSubmit">
-                        登录
-                    </Button>
-                </Col>
-                <Col>
-                    <Button type="primary" long>
-                        以管理员身份登录
-                    </Button>
                 </Col>
             </Row>
-        </div>
+            <Row>
+                <Col>
+                    <FormItem>
+                        <Button size="small" type="info">忘记密码?</Button>
+                        <Checkbox v-model="single" style="margin-left: 30%">记住密码</Checkbox>
+                    </FormItem>
+                </Col>
+            </Row>
+            <Row>
+                <Col :xl="20">
+                    <FormItem>
+                        <Button type="success" long @click="onSubmit">
+                            <div>登录</div>
+                        </Button>
+                    </FormItem>
+                </Col>
+
+            </Row>
+            <Row>
+                <Col :xl="20">
+                    <FormItem>
+                        <Button type="primary" long>
+                            <div >以管理员身份登录</div>
+                        </Button>
+                    </FormItem>
+
+                </Col>
+            </Row>
+            </Form>
+        </Card>
     </div>
 </template>
 
 <script>
     import api from "../api/api";
+    import store from "../store";
 
     export default {
         name: "Login",
@@ -58,33 +71,44 @@
         computed: {},
         methods: {
             onSubmit(){
-                /*console.log(api.login(this.username, this.password));
-                api.login(this.username,this.password).then(res=>{
+
+                // //查询登录账户密码
+                // console.log(api.login(this.username, this.password));
+                // api.login(this.username,this.password).then(res=>{
+                //     if (res){
+                //         this.$router.push("/home")
+                //     }
+                // })
+                //查询登录员工的信息
+
+                api.getStaffInfoByName(this.username).then(res=>{
                     if (res){
-                        this.$router.push("/home")
+                        this.$store.user=res
+                        this.$store.dispatch('setUserInfo',res)
                     }
-                })*/
+                })
                 this.$router.push("/home")
 
             }
         },
-        watch: {}
+        watch: {},
+        actions:{
+
+        },
+
     }
 </script>
 
 <style scoped>
     .login{
-        background-image: url("../assets/logo.png");
-        width: 100%;
-        position: absolute;
-        top: 20%;
+        padding-top: 5%;
+        height: 100%;
+        background-image: url('../assets/backgroup.png');
     }
-    .title{
-        position: relative;
-        top: -40px;
-    }
-    .button{
-        position: relative;
-        top: 20px;
+    .form{
+        width: 20%;
+        height: 50%;
+        margin-left: 40%;
+
     }
 </style>

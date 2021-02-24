@@ -64,7 +64,7 @@
 </script>
 
 <style scoped>
-    .collased-menu-dropdown {
+    /*.collased-menu-dropdown {
         width: 100%;
         margin: 0;
         line-height: normal;
@@ -78,15 +78,15 @@
     }
     .collased-menu-dropdown:hover {
         background: rgba(100, 100, 100, 0.1);
-    }
+    }*/
     .collased-menu-dropdown * {
         color: #515a6e;
     }
     .collased-menu-dropdown .ivu-menu-item > i {
-        margin-right: 12px !important;
+        margin-right: 12px ;
     }
     .collased-menu-dropdown .ivu-menu-submenu > .ivu-menu > .ivu-menu-item > i {
-        margin-right: 8px !important;
+        margin-right: 8px ;
     }
 
      .ivu-dropdown-rel a {
@@ -94,10 +94,10 @@
     }
     a.drop-menu-a {
         display: inline-block;
-        padding: 9px 17px;
+        padding: 6px 18px;
         width: 100%;
         text-align: center;
-        color: #495060;
+        color: #124dd5;
     }
     .menu-title {
         padding-left: 6px;

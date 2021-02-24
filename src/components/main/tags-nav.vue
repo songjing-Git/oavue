@@ -139,7 +139,6 @@
                 this.$emit('input', item)
             },
             showTitleInside (item) {
-                console.log(item)
                 return showTitle(item, this)
             },
             isCurrentTag (item) {

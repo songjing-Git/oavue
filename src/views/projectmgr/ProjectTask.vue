@@ -1,15 +1,13 @@
 <template>
-    <router-view/>
+
 </template>
 
 <script>
     export default {
-        name: "ParentsView",
+        name: "ProjectTask",
         props: {},
         data() {
-            return {
-
-            }
+            return {}
         },
         computed: {},
         methods: {},

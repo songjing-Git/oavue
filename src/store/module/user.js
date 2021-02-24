@@ -1,7 +1,35 @@
 export default {
     state: {
-        access: '',
-        avatorImgPath:'',
+        user:{
+            STAFF_ID:'',//编号
+            STAFF_NAME:'',//姓名
+            GENDER:'',
+            USER_NAME:'',//用户名
+            DEPT_NAME:'',
+            PHONE:'',
+            EMAIL:'',
+            JOB_LEVEL_NAME:'',
+            NATION:'',
+            PAYBALE_SALARY:'',
+            NATIVE_PLACE:'',
+            ADDRESS:'',
+            WORK_AGE:'',
+            BIRTHDAY:'',
+            BASE_SALARY:'',
+            access: '',//权限等级
+            HEAD_PHOTO:'',//头像
+        }
+
+    },
+    getters:{
+        getUserInfo: state =>{
+            return state.user
+        }
+    },
+    mutations:{
+        setUserInfo (state,userInfo) {
+            state.user = userInfo
+        }
     },
     actions:{
         // 登录
@@ -36,5 +64,9 @@ export default {
                 // resolve()
             })*/
         },
-    }
+        setUserInfo({commit},userInfo) {
+            commit('setUserInfo',userInfo)
+        }
+    },
+
 }
