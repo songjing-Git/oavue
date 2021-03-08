@@ -7,7 +7,6 @@ import Cookies from 'js-cookie'
  */
 export const getMenuByRouter = (list, access) => {
     let res = []
-
     forEach(list, item => {
         if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
             let obj = {

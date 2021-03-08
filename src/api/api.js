@@ -7,10 +7,10 @@ export default {
          )
     },
 
-    getStaffInfoList(param,page){
+    getStaffInfoList(param){
          return Post(
              'user/staffList',
-             param,page
+             param
          )
     },
     getStaffInfoByName(username){
@@ -20,17 +20,41 @@ export default {
         )
     },
 
-    getWorkList(){
-        return Get(
-            'work/getWorkList',
-        )
-    },
+
 
     getWorkInfo(param){
-        return Post(
+        return Get(
             'work/getWorkInfo',
             param
         )
+    },
+
+    getDepartName(){
+         return Get(
+             "depart/getDepartName"
+         )
+    },
+
+
+    getDepartInfo(param){
+         return Get(
+             "depart/getDepartInfo",
+             param
+         )
+    },
+
+    insertDepart(param){
+         return Post(
+            "depart/insertDepart",
+                param
+         )
+    },
+
+    selectProInfo(param){
+         return Post(
+             "project/selectProInfo",
+             param
+         )
     }
 }
 

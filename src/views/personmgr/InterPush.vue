@@ -18,7 +18,7 @@
                     </div>
                     <Table
                         ref="tablesMain"
-                        :data="tableDate"
+                        :data="tableDate.records"
                         :columns="columns"
                         :stripe="true"
                         :border="false"
@@ -27,6 +27,7 @@
                         :highlight-row="true"
                         no-data-text="数据为空时显示的提示内容"
                         no-filtered-data-text="筛选数据为空时显示的提示内容"
+
                     >
                         <template slot-scope="{ row, index }" slot="workMatch">
                             <Button type="primary" size="small" @click="notView = true">查看</Button>
@@ -35,9 +36,12 @@
                                 title="任职要求"
                                 @on-ok="ok"
                                 @on-cancel="cancel">
-                                <p>Content of dialog</p>
-                                <p>Content of dialog</p>
-                                <p>Content of dialog</p>
+                                个人技能:
+                                <p>C / C + +, data structures, software engineering,</p>
+                                <p>operating systems, computer networks, databases, compiler theory,</p>
+                                <p>computer architecture, Microcomputer Principle and Interface Technology,</p>
+                                <p>Computer English, Java, ASP, etc.</p>
+
                             </Modal>
                         </template>
                         <template slot-scope="{ row, index }" slot="push">
@@ -61,12 +65,15 @@
                         <slot name="header" slot="header">
                         </slot>
                         <slot name="footer" slot="footer">
-                            <Page :total="pageTitle"
+                            <Page :total="tableDate.total"
                                   show-total
                                   show-elevator
                                   show-sizer
                                   :placement="'top'"
-                                  :page-size-opts="[10,20,50,100]"  />
+                                  :page-size-opts="[10,20,50,100]"
+                                  :current="search.current"
+                                  @on-change="updatePushCurrentPage"
+                                  @on-page-size-change="updatePushPageSize"/>
                         </slot>
                         <slot name="loading" slot="loading"></slot>
                     </Table>
@@ -87,8 +94,10 @@
         props: {},
         data () {
             return {
-                pageTitle:40,
-                tableDate: [],
+                tableDate: {
+                    total:0,
+                    records:[],
+                },
                 columns: [
                     { title: '职位编号' ,key: 'jobId'},
                     { title: '职位名称', key: 'jobName' , sortable: true },
@@ -100,8 +109,12 @@
                 search:{
                     job_name:'',
                     job_addr:'',
-                    job_salary:''
+                    job_salary:'',
+                    pageSize:10,
+                    current:1,
                 },
+
+
                 notView:false,
                 notPush:false,
             }
@@ -113,7 +126,7 @@
 
             next(vm => {
                 // 通过 `vm` 访问组件实例
-                api.getWorkList().then(
+                api.getWorkInfo().then(
                     resolve=>{
                         vm.tableDate=resolve
                     },
@@ -149,7 +162,32 @@
             },
             cancel () {
                 this.$Message.info('Clicked cancel');
-            }
+            },
+            updatePushCurrentPage(currentPage){
+                this.search.current=currentPage
+                console.log(this.search)
+                api.getWorkInfo(this.search).then(
+                    res=>{
+                        this.tableDate=res
+                    },
+                    rej=>{
+                        console.log(rej)
+                    }
+                )
+
+            },
+            updatePushPageSize(pageSize){
+                this.search.pageSize=pageSize
+                console.log(pageSize)
+                api.getWorkInfo(this.search).then(
+                    res=>{
+                        this.tableDate=res
+                    },
+                    rej=>{
+                        console.log(rej)
+                    }
+                )
+            },
 
         },
         watch: {}

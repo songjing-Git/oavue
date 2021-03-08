@@ -13,7 +13,7 @@
                         <FormItem label="所在部门:" prop="StaffCode">
                             <Input ></Input>
                         </FormItem>
-                        <FormItem label="所属公司:" prop="StaffCode">
+                        <FormItem label="报销中心:" prop="StaffCode">
                             <Input ></Input>
                         </FormItem>
                     </Col>
@@ -33,20 +33,40 @@
                 </Divider>
                 <Row>
                     <Col>
-                        <Table border :columns="columns12" :data="data6">
-                            <template slot-scope="{ row }" slot="name">
-                                <strong>{{ row.name }}</strong>
+                        <Table
+                            :border="true"
+                            :columns="columns"
+                            :data="mealDate"
+                            show-summary >
+                            <slot name="header" slot="header" >
+                                <Button type="error"  @click="addLine" style="margin-left: 89%">添加一行</Button>
+                                <Button type="error"  @click="deleteLine(index)" >删除一行</Button>
+                            </slot>
+                            <template slot-scope="{row,index}" slot="type">
+                                <Select>
+                                    <Option value="a">
+
+                                    </Option>
+                                </Select>
                             </template>
-                            <template slot-scope="{ row, index }" slot="action">
-                                <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">费用明细</Button>
-                                <Button type="error" size="small" @click="remove(index)">删除</Button>
+                            <template slot="money">
+                                <Input type="number"></Input>
+                            </template>
+                            <template slot="date">
+                                <DatePicker/>
+                            </template>
+                            <template slot="code">
+                                <Input></Input>
+                            </template>
+                            <template slot="action">
+                                <Button>费用明细</Button>
                             </template>
                         </Table>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Col :xl="{span:8,offset:10}">
+                    <Col :xl="{span:8,offset:10}" class="submit">
                         <FormItem>
                             <Button type="primary" >提交审批</Button>
                             <Button style="margin-left: 8px">返回</Button>
@@ -64,43 +84,35 @@
         props: {},
         data() {
             return {
-                columns12: [
-                    { title: '费用报销类型', slot: 'name'},
-                    {title: '报销总金额', key: 'age'},
-                    {title: '报销日期', key: 'address'},
-                    {title: '发票编码' ,key:'aaa'},
-                    {title: '操作', slot: 'action', width: 180, align: 'center'}
+                columns: [
+                    {
+                        type: 'selection',
+                        width: 60,
+                        align: 'center'
+                    },
+                    { title: '费用报销类型',key: 'type', slot: 'type',align: 'center'},
+                    { title: '报销金额', key: 'money',slot: 'money',align: 'center'},
+                    { title: '报销日期', key: 'date',slot: 'date' ,align: 'center'},
+                    { title: '发票编码' ,key:'code' , slot: 'code',align: 'center'},
+                    { title: '操作',  slot: 'action',  align: 'center'}
                 ],
-                data6: [
-                    {
-                        name: 'John Brown',
-                        age: 18,
-                        address: 'New York No. 1 Lake Park'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 24,
-                        address: 'London No. 1 Lake Park'
-                    },
-                    {
-                        name: 'Joe Black',
-                        age: 30,
-                        address: 'Sydney No. 1 Lake Park'
-                    },
-                    {
-                        name: 'Jon Snow',
-                        age: 26,
-                        address: 'Ottawa No. 2 Lake Park'
-                    }
-                ]
+                mealDate:[
+                    {money:''}
+                ],
             }
         },
         computed: {},
-        methods: {},
+        methods: {
+            addLine(index){
+                this.mealDate.push({money:''})
+            },
+            deleteLine(index){
+                    this.mealDate.splice(index, 1);
+            }
+        },
         watch: {}
     }
 </script>
 
 <style scoped>
-
 </style>

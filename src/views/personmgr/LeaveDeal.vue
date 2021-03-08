@@ -15,7 +15,7 @@
                             <Divider orientation="left">
                                 <p >员工信息</p>
                             </Divider>
-                            <Col :xl="{offset:4,span:4}">
+                            <Col :xl="{offset:4,span:5}">
                                 <FormItem label="员工编号:" prop="StaffCode" >
                                     <Input> </Input>
                                 </FormItem>
@@ -29,7 +29,7 @@
                                     <Input ></Input>
                                 </FormItem>
                             </Col>
-                            <Col :xl="{offset:4,span:4}">
+                            <Col :xl="{offset:4,span:5}">
                                 <Col >
                                     <FormItem label="员工姓名:" prop="StaffCode">
                                         <Input ></Input>
@@ -59,6 +59,7 @@
                                         <Checkbox label="Movie"></Checkbox>
                                     </CheckboxGroup>
                                 </FormItem>
+
                                 <FormItem label="填报类型:" prop="ChangeType">
                                     <RadioGroup >
                                         <Radio label="MySelf">本人填报</Radio>
@@ -73,6 +74,9 @@
                                 <Divider orientation="left">
                                     <p>评分表</p>
                                 </Divider>
+                                <FormItem label="给公司评分:">
+                                    <Rate v-model="value" />
+                                </FormItem>
                             </Col>
                             <Col>
                                 <Divider orientation="left">
@@ -114,7 +118,9 @@
         name: "LeaveDeal",
         props: {},
         data() {
-            return {}
+            return {
+                value:0
+            }
         },
         computed: {},
         methods: {},

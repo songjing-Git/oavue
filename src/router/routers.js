@@ -42,6 +42,33 @@ export default [
         ]
     },
     {
+        path: 'sysMgr',
+        name:'sysMgr',
+        meta: {
+            title: '系统管理',
+            icon: 'md-cog',
+        },
+        component:Home,
+        children: [
+            {
+                path: '/roleMgr',
+                name: '/roleMgr',
+                meta: {
+                    title: '角色管理',
+                    icon: ''
+                },
+            },
+            {
+                path: '/authMgr',
+                name: 'authMgr',
+                meta: {
+                    title: '权限管理',
+                    icon: ''
+                }
+            }
+        ]
+    },
+    {
       path: 'staffInfoMgr',
       name: 'staffInfoMgr',
       meta: {
@@ -144,6 +171,33 @@ export default [
                             icon: ''
                         }
                     }*/
+                ]
+            },
+            {
+                path: '/ProveStamp',
+                name: 'ProveStamp',
+                meta: {
+                    title: '证明盖章',
+                    icon: 'md-color-filter'
+                },
+                component:Home,
+                children: [
+                    {
+                        path: '/InternshipCer',
+                        name: 'InternshipCer',
+                        meta: {
+                            title: '实习证明',
+                            icon: 'md-color-filter'
+                        }
+                    },
+                    {
+                        path: '/IncomePro',
+                        name: 'IncomePro',
+                        meta: {
+                            title: '在职收入证明',
+                            icon: 'md-cog'
+                        }
+                    }
                 ]
             },
             {
@@ -274,33 +328,7 @@ export default [
             },
         ]
     },
-    {
-        path: '/ProveStamp',
-        name: 'ProveStamp',
-        meta: {
-            title: '证明盖章',
-            icon: 'md-color-filter'
-        },
-        component:Home,
-        children: [
-            {
-                path: '/InternshipCer',
-                name: 'InternshipCer',
-                meta: {
-                    title: '实习证明',
-                    icon: 'md-color-filter'
-                }
-            },
-            {
-                path: '/IncomePro',
-                name: 'IncomePro',
-                meta: {
-                    title: '在职收入证明',
-                    icon: 'md-cog'
-                }
-            }
-        ]
-    },
+
     {
         path: '/AssistantMgr',
         name: 'AssistantMgr',
@@ -309,6 +337,16 @@ export default [
             icon: 'logo-yahoo'
         },
         component:Home,
+        children: [
+            {
+                path: '/ContractMgr',
+                name: 'ContractMgr',
+                meta: {
+                    title: '合同管理',
+                    icon: 'md-infinite'
+                },
+            },
+        ]
     },
     {
         path: '/ProjectMgr',
@@ -324,7 +362,8 @@ export default [
                 name: 'ProjectInfo',
                 meta: {
                     title: '项目查询',
-                    icon: 'md-infinite'
+                    icon: 'md-infinite',
+                    notCache: true
                 },
                 component:()=>import('../views/projectmgr/ProjectInfo')
             },
@@ -337,14 +376,7 @@ export default [
                 },
                 component:()=>import('../views/projectmgr/ProjectApp')
             },
-            {
-                path: '/ContractMgr',
-                name: 'ContractMgr',
-                meta: {
-                    title: '合同管理',
-                    icon: 'md-infinite'
-                },
-            },
+
             {
                 path: '/TaskAllocation',
                 name: 'TaskAllocation',
@@ -352,6 +384,7 @@ export default [
                     title: '项目任务',
                     icon: 'md-infinite'
                 },
+                component:()=>import('../views/projectmgr/ProjectTask')
             },
         ]
     },

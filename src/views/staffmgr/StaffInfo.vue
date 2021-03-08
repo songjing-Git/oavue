@@ -33,7 +33,6 @@
             </Form>
         </div>
         <Table
-            border="true"
             ref="tablesMain"
             :data="tableDate.records"
             :columns="columns"
@@ -57,52 +56,9 @@
                     :width="780"
                     v-model="isAddStaff"
                     title="添加员工"
-                    @on-ok="quit"
+                    @on-ok="ok"
                     @on-cancel="cancel">
-                    <Form :label-width="100" label-position="left" show-message v-model="addStaff">
-                        <Row>
-                            <Col :xl="{span:12}">
-                                <FormItem label="员工编号:" >
-                                    <Input > </Input>
-                                </FormItem>
-                                <FormItem label="员工姓名:" prop="StaffCode" required>
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="所属部门:" prop="StaffCode">
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="员工职级:" prop="StaffCode">
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="担任职位:" prop="StaffCode">
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="入职日期:" prop="StaffCode">
-                                    <DatePicker type="date" ></DatePicker>
-                                </FormItem>
-                            </Col>
-                            <Col :xl="{span:11,offset:1}">
-                                <FormItem label="员工编号:" >
-                                    <Input > </Input>
-                                </FormItem>
-                                <FormItem label="员工姓名:" prop="StaffCode" required>
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="所属部门:" prop="StaffCode">
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="员工职级:" prop="StaffCode">
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="担任职位:" prop="StaffCode">
-                                    <Input ></Input>
-                                </FormItem>
-                                <FormItem label="入职日期:" prop="StaffCode">
-                                    <DatePicker type="date" ></DatePicker>
-                                </FormItem>
-                            </Col>
-                        </Row>
-                    </Form>
+                    <AddStaff :depart="depart"/>
 
 
                 </Modal>
@@ -110,9 +66,8 @@
                 <Modal
                     v-model="isUpdateStaff"
                     title="修改员工"
-                    @on-ok="quit"
+                    @on-ok="ok"
                     @on-cancel="cancel">
-
                 </Modal>
             </slot>
             <slot name="footer" slot="footer">
@@ -125,7 +80,7 @@
                       :page-size-opts="[10,20,50,100]"
                       @on-change="updateCurrentPage"
                       @on-page-size-change="updatePageSize"
-                @/>
+                />
             </slot>
             <slot name="loading" slot="loading"></slot>
         </Table>
@@ -135,10 +90,11 @@
 <script>
     import api from "../../api/api";
     import InfoDrawer from "../../components/menu/InfoDrawer";
+    import AddStaff from "../../components/menu/AddStaff";
 
     export default {
         name: "StaffInfo",
-        components: {InfoDrawer},
+        components: {AddStaff, InfoDrawer},
         props: {},
         data() {
             return {
@@ -182,10 +138,7 @@
                     display: 'block',
                     marginBottom: '16px'
                 },
-
-                addStaff:{
-
-                },
+                depart:[],
                 isShow:false,
                 isAddStaff:false,
                 isUpdateStaff:false,
@@ -199,6 +152,15 @@
                 api.getStaffInfoList().then(
                     res=>{
                         vm.tableDate=res
+                        console.log(res)
+                    },
+                    rej=>{
+                        console.log(rej)
+                    }
+                )
+                api.getDepartName().then(
+                    res=>{
+                        vm.depart=res
                     },
                     rej=>{
                         console.log(rej)
@@ -206,17 +168,15 @@
                 )
             })
         },
-        computed: {
-        },
         methods: {
             onIsSearch(){
                 this.isShow=!this.isShow
             },
-            quit () {
-                this.$Message.info('Clicked ok');
+            ok () {
+                this.$Message.success('提交成功');
             },
             cancel () {
-                this.$Message.info('Clicked cancel');
+                this.$Message.info('取消成功');
             },
             updateCurrentPage(currentPage){
                 this.search.current=currentPage
@@ -242,7 +202,7 @@
                 )
             },
             StaffInfoSearch(){
-                api.getStaffInfoList(this.search,this.tableDate).then(
+                api.getStaffInfoList(this.search).then(
                     res=>{
                         this.tableDate=res
                     },
@@ -250,7 +210,9 @@
                         console.log(rej)
                     }
                 )
-            }
+            },
+        },
+        computed: {
         },
         watch: {}
     }

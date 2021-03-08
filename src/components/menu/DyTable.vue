@@ -1,17 +1,13 @@
 <template>
-    <transition :name="transitionName">
-        <router-view></router-view>
-    </transition>
+
 </template>
 
 <script>
     export default {
-        name: "ParentsView",
+        name: "DyTable",
         props: {},
         data() {
-            return {
-                transitionName:'slide-left'
-            }
+            return {}
         },
         computed: {},
         methods: {},

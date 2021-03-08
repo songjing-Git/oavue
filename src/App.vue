@@ -23,5 +23,10 @@
         width: 100%;
         height: 100%;
     }
+    /**
+    自定义表单字体
+     */
+    #fontSize .ivu-form-item-label{
 
+    }
 </style>

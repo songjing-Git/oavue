@@ -19,7 +19,13 @@
                     <div class="tag-nav-wrapper">
                         <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
                     </div>
-                    <Alert type="error" closable>An error prompt</Alert>
+                    <Row>
+                        <Col>
+                            <custom-bread-crumb show-icon style="margin-left: 30px;" :list="breadCrumbList"></custom-bread-crumb>
+                            <Alert type="error" closable>An error prompt</Alert>
+                        </Col>
+                    </Row>
+
                     <Content class="content-wrapper">
                         <keep-alive :include="cacheList">
                             <router-view class="routerView"/>
@@ -47,9 +53,10 @@
     import FullScreen from "../components/main/full-screen";
     import ParentsView from "./ParentsView";
     import { mapMutations, mapActions, mapGetters } from 'vuex'
+    import CustomBreadCrumb from "../components/main/custom-bread-crumb";
     export default {
         name: "Home",
-        components: {ParentsView, FullScreen, User, TagsNav, HeaderBar,  SideMenu},
+        components: {CustomBreadCrumb, ParentsView, FullScreen, User, TagsNav, HeaderBar,  SideMenu},
         props: {},
         data() {
             return {
@@ -58,6 +65,9 @@
             }
         },
         computed: {
+            breadCrumbList () {
+                return this.$store.state.app.breadCrumbList
+            },
             menuList () {
                 return this.$store.getters.menuList
             },
@@ -218,7 +228,5 @@
     .ivu-select-dropdown.ivu-dropdown-transfer {
         max-height: 400px;
     }
-    .routerView{
-        background: #FFFFFF;
-    }
+
 </style>
