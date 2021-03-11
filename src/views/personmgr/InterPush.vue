@@ -31,6 +31,13 @@
                     >
                         <template slot-scope="{ row, index }" slot="workMatch">
                             <Button type="primary" size="small" @click="notView = true">查看</Button>
+
+                        </template>
+                        <template slot-scope="{ row, index }" slot="push">
+                            <Button type="success" size="small" @click="notPush =true" >上传简历</Button>
+
+                        </template>
+                        <slot name="header" slot="header">
                             <Modal
                                 v-model="notView"
                                 title="任职要求"
@@ -43,9 +50,6 @@
                                 <p>Computer English, Java, ASP, etc.</p>
 
                             </Modal>
-                        </template>
-                        <template slot-scope="{ row, index }" slot="push">
-                            <Button type="success" size="small" @click="notPush =true" >上传简历</Button>
                             <Modal
                                 v-model="notPush"
                                 title="简历投递"
@@ -61,8 +65,6 @@
                                     </div>
                                 </Upload>
                             </Modal>
-                        </template>
-                        <slot name="header" slot="header">
                         </slot>
                         <slot name="footer" slot="footer">
                             <Page :total="tableDate.total"

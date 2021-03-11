@@ -28,7 +28,7 @@ export default [
         children: [
             {
               path: "/home",
-                redirect:"/main"
+              redirect:"/main"
             },
             {
                 path:"/main",
@@ -180,7 +180,7 @@ export default [
                     title: '证明盖章',
                     icon: 'md-color-filter'
                 },
-                component:Home,
+                component:()=>import('../views/ParentsView'),
                 children: [
                     {
                         path: '/InternshipCer',
@@ -388,7 +388,6 @@ export default [
             },
         ]
     },
-
     {
         path: '/500',
         name: 'error_500',
@@ -403,5 +402,32 @@ export default [
             hideInMenu: true
         },
 
+    },
+    {
+        path: '/Submit',
+        name: 'Submit',
+        meta: {
+            hideInMenu: true,
+        },
+        component:()=>import('../components/page/SubmitSuccess')
+    },
+    {
+        path: '/Submit',
+        name: 'Submit',
+        meta: {
+            hideInMenu: true,
+        },
+        component:Home,
+        children: [
+            {
+                path: '/Success',
+                name: 'Success',
+                meta: {
+                    notTagShow: true,
+                    hideInMenu: true,
+                },
+                component:()=>import('../components/page/SubmitSuccess')
+            },
+        ]
     }
 ]

@@ -24,6 +24,12 @@ export default {
                 let homeTag = tagList.splice(homeTagIndex, 1)[0]
                 tagList.unshift(homeTag)
             }
+            for (let i=0;i<tagList.length;i++) {
+                if (tagList[i].meta.notTagShow==true) {
+                    tagList.splice(i,1)
+                }
+            }
+            console.log(tagList)
             state.tagNavList = tagList
             setTagNavListInLocalstorage([...tagList])
         },

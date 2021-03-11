@@ -37,10 +37,13 @@
                             :border="true"
                             :columns="columns"
                             :data="mealDate"
-                            show-summary >
+                        >
                             <slot name="header" slot="header" >
-                                <Button type="error"  @click="addLine" style="margin-left: 89%">添加一行</Button>
-                                <Button type="error"  @click="deleteLine(index)" >删除一行</Button>
+                                <Col :xl="{offset:20}">
+                                    <Button type="success"  @click="remove(index)">导入excel</Button>
+                                    <Button type="error"  @click="remove(index)">删除</Button>
+                                    <Button type="error"  @click="addLine(index)">添加</Button>
+                                </Col>
                             </slot>
                             <template slot-scope="{row,index}" slot="type">
                                 <Select>
@@ -58,9 +61,10 @@
                             <template slot="code">
                                 <Input></Input>
                             </template>
-                            <template slot="action">
+                            <template slot-scope="{ row, index }" slot="action">
                                 <Button>费用明细</Button>
                             </template>
+
                         </Table>
                     </Col>
                 </Row>
@@ -97,17 +101,28 @@
                     { title: '操作',  slot: 'action',  align: 'center'}
                 ],
                 mealDate:[
-                    {money:''}
+                    {
+                        type:'',
+                        money:'',
+                        date:'',
+                        code:'',
+                    }
                 ],
             }
         },
         computed: {},
         methods: {
-            addLine(index){
-                this.mealDate.push({money:''})
+            addLine (index) {
+                this.mealDate.push({
+                    type:'',
+                    money:'',
+                    date:'',
+                    code:'',
+                })
+                console.log()
             },
-            deleteLine(index){
-                    this.mealDate.splice(index, 1);
+            remove (index) {
+                this.mealDate.splice(index ,1)
             }
         },
         watch: {}

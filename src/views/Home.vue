@@ -28,18 +28,12 @@
 
                     <Content class="content-wrapper">
                         <keep-alive :include="cacheList">
-                            <router-view class="routerView"/>
+                                <router-view class="routerView"/>
                         </keep-alive>
                     </Content>
                 </Layout>
             </Content>
-            <Footer>
-               <!-- <Divider orientation="center" :dashed="true">
-                    <br>
-                    <p>songjing@湖南城市学院-信息与计算科学</p>
-                    <a href="http://beian.miit.gov.cn">湘ICP备2021000328号</a>
-                </Divider>-->
-            </Footer>
+            
         </Layout>
     </Layout>
 </template>

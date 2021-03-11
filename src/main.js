@@ -8,6 +8,7 @@ import axios from 'axios'
 import Vuex from 'vuex'
 import iView from "view-design";
 import 'view-design/dist/styles/iview.css'
+
 Vue.use(iView)
 Vue.use(Vuex)
 Vue.config.productionTip = false

@@ -203,7 +203,7 @@
                         if (this.steps>4) {
                             this.steps=0
                         }
-                        console.log()
+                        this.$router.push('Success')
                         this.$Message.success('提交成功!');
                     } else {
                         this.$Message.error('请核对信息!');

@@ -30,25 +30,11 @@
 
             <template slot-scope="{ row, index }" slot="action">
                 <Button type="primary" size="small"  @click="departAdd()">添加部门员工</Button>
-                <Modal
-                    v-model="departAddStaff"
-                    title="加入员工"
-                    :width="780"
-                    @on-ok="departAddStaffOK"
-                    @on-cancel="cancel">
-                    <depart-add-staff :table-date="staffInfo"/>
 
-                </Modal>
 
 
                 <Button type="error" size="small" @click="removeDepart=true">删除</Button>
-                <Modal
-                    v-model="removeDepart"
-                    title="加入员工"
-                    @on-ok="departAddStaffOK"
-                    @on-cancel="cancel">
 
-                </Modal>
                 <Button type="error" size="small" @click="isUpdateDepart=true">修改</Button>
             </template>
 
@@ -60,7 +46,7 @@
                 <Modal
                     :width="520"
                     v-model="isAddDepart"
-                    title="添加部门"
+                    title="新增部门"
                     @on-ok="isAddDepartOK"
                     @on-cancel="cancel">
                     <Form :label-width="100" label-position="left" show-message v-model="isAddDepart">
@@ -84,6 +70,22 @@
                             </Col>
                         </Row>
                     </Form>
+                </Modal>
+                <Modal
+                    v-model="departAddStaff"
+                    title="加入员工"
+                    :width="890"
+                    @on-ok="departAddStaffOK"
+                    @on-cancel="cancel">
+                    <depart-add-staff :table-date="staffInfo"/>
+
+                </Modal>
+                <Modal
+                    v-model="removeDepart"
+                    title="删除员工"
+                    @on-ok="departAddStaffOK"
+                    @on-cancel="cancel">
+
                 </Modal>
                 <Modal
                     v-model="isUpdateDepart"
